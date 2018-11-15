@@ -1,0 +1,124 @@
+<form class="modal-content edit-customer-modal" name="addTimeForm">
+
+  <div class="modal-header text-center">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h3 class="modal-title" id="myModalLabel">
+      Editing WiFi User
+    </h3>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group" ng-class="{'has-error': addTimeForm.hostname.$invalid}">
+      <label>Hostname</label>
+      <input class="form-control" type="text" ng-model="client.hostname" required name="hostname">
+    </div>
+
+    <h4>Add Time</h4>
+    <div class="form-group" ng-class="{'has-error' : addTimeForm.minutes.$invalid}">
+      <label>Minutes</label>
+      <input class="form-control" type="number" name="minutes" ng-model="minutes" required>
+      <span class="help-block" ng-if="addTimeForm.minutes.$error.required">Required.</span>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error' : addTimeForm.hours.$invalid}">
+      <label>Hours</label>
+      <input class="form-control" type="number" ng-model="hours" name="hours" required>
+      <span class="help-block" ng-if="addTimeForm.hours.$error.required">Required.</span>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error' : addTimeForm.days.$invalid}">
+      <label>Days</label>
+      <input class="form-control" type="number" ng-model="days" name="days" required>
+      <span class="help-block" ng-if="addTimeForm.days.$error.required">Required.</span>
+    </div>
+
+    <p>NOTE: You can input negative values (ex: -1) to subtract instead of adding time.</p>
+    <hr>
+    <h4>Pause Time</h4>
+    <div ng-class="{'has-success' : allow_pause}">
+      <div class="checkbox">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="allow_pause" ng-model="allow_pause">
+          <span>
+            Allow user to pause remaining time?
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <hr>
+    <h4>Cookie Authentication</h4>
+
+    <div ng-class="{'has-success' : cookie_auth}">
+      <div class="checkbox">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="cookie_auth" ng-model="cookie_auth">
+          <span>
+            Enable cookie authentication?
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div ng-show="cookie_auth" ng-class="{'has-success' : cookie_transferrable}">
+      <div class="checkbox">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="cookie_transferrable" ng-model="cookie_transferrable">
+          <span>
+            Allow user to use multiple browsers using Token?
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <hr>
+    <h4>Time Transfer</h4>
+
+    <div ng-class="{'has-success' : cookie_sharable}">
+      <div class="checkbox">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="cookie_sharable" ng-model="cookie_sharable">
+          <span>
+            Allow user to transfer remaining time to another device using Token?
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <hr>
+    <h4>Change Bandwidth</h4>
+    <div class="form-group" ng-class="{'has-error' : addTimeForm.bandwidth_down.$invalid}">
+      <label>Bandwidth Down (kbps)</label>
+      <input class="form-control" type="number" ng-model="bandwidth_down" name="bandwidth_down" min="1" required>
+      <span class="help-block" ng-if="addTimeForm.bandwidth_down.$error.required">Required.</span>
+      <span class="help-block" ng-if="addTimeForm.bandwidth_down.$error.min">Minimum of 1 kbps.</span>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error' : addTimeForm.bandwidth_up.$invalid}">
+      <label>Bandwidth Up (kbps)</label>
+      <input class="form-control" type="number" ng-model="bandwidth_up" name="bandwidth_up" min="1" required>
+      <span class="help-block" ng-if="addTimeForm.bandwidth_up.$error.required">Required.</span>
+      <span class="help-block" ng-if="addTimeForm.bandwidth_up.$error.min">Minimum of 1 kbps.</span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="submit" ng-click="submit(totalTime())" class="btn btn-success" ng-disabled="addTimeForm.$invalid || addTimeForm.$pristine">Update</button>
+    <a class="btn btn-warning" ng-click="reset()" ng-disabled="client.remaining_time === 0">Reset Time</a>
+    <button type="button" class="btn btn-success" ng-disabled="!(client.status == 'disconnected' && client.remaining_time > 0)" ng-click="reconnect()">Reconnect</button>
+    <a class="btn btn-default" ng-click="$dismiss()">Cancel</a>
+
+    <div ng-if="client.current_browser" class="text-left">
+      <hr>
+      <p>
+      <strong>Customer's browser:</strong>
+      {{client.current_browser}}
+      </p>
+    </div>
+
+  </div>
+
+</form>
+

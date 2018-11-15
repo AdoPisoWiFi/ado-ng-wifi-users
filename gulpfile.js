@@ -6,7 +6,8 @@ const del = require('del')
 
 const APP_FILES = [
   './src/wifi-users.js',
-  './src/wifi-users-service.js'
+  './src/wifi-users-service.js',
+  './src/edit_customer_time_modal/edit_customer_time_modal.js'
 ]
 
 function clean() {
