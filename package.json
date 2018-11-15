@@ -1,0 +1,29 @@
+{
+  "name": "@adopisowifi/ng-wifi-users",
+  "version": "0.0.1",
+  "description": "Angular.js 1.x module for managing AdoPisoWiFi wifi users",
+  "main": "./dist/ado-ng-wifi-users.js",
+  "scripts": {
+    "publish-package": "git push && git push --tags && npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdoPisoWiFi/ado-ng-wifi-users.git"
+  },
+  "keywords": [
+    "adopisowifi",
+    "wifi-users"
+  ],
+  "author": "AdoPisoWiFi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdoPisoWiFi/ado-ng-wifi-users/issues"
+  },
+  "homepage": "https://github.com/AdoPisoWiFi/ado-ng-wifi-users#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-angular-templatecache": "^2.2.5",
+    "gulp-concat": "^2.6.1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "ado-ng-wifi-users",
+  "description": "Angular.js 1.x module for managing AdoPisoWiFi wifi users",
+  "main": "./dist/ado-ng-wifi-users.js",
+  "authors": [
+    "AdoPisoWiFi"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "adopisowifi",
+    "timer-settings"
+  ],
+  "homepage": "https://github.com/AdoPisoWiFi/ado-ng-timer-settings",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ado-save-config-btn": "^1.0.3"
+  }
+}

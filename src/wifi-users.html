@@ -1,0 +1,151 @@
+<div class="wifi-users">
+
+  <div uib-tabset active="active">
+    <div uib-tab index="0" heading="Connected Users">
+
+      <div class="padd-top">
+
+        <div
+          ba-panel
+          ba-panel-title="Number of Users: {{$ctrl.clients.length}}"
+          ba-panel-class="with-scroll">
+
+          <div class="row">
+            <div class="col-md-3">
+              <div class="padd-bottom">
+                <a class="btn btn-warning" ng-click="$ctrl.reloadClients()" ng-disabled="refreshing">
+                  <i class="glyphicon glyphicon-refresh"></i>
+                  {{$ctrl.refreshing? 'Refrishing List...' : 'Refresh List'}}
+                </a>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <form class="form-inline">
+                <label>Sort By:</label> 
+                <select class="form-control" ng-model="$ctrl.sortAttr">
+                  <option value="remaining_time">Remaing Time</option>
+                  <option value="status">Status</option>
+                  <option value="hostname">Hostname</option>
+                  <option value="ip_address">IP Address</option>
+                  <option value="bandwidth_down">Max Download</option>
+                  <option value="bandwidth_up">Max Upload</option>
+                </select>
+              </form>
+            </div>
+
+            <div class="col-md-6">
+              <form class="form-inline">
+                <div class="input-group">
+                  <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">
+                    <i class="ion-ios-search-strong"></i>
+                  </span>
+                  <input type="text" ng-model="$ctrl.searchText" class="form-control with-primary-addon" placeholder="Search users by hostname/mac/ip" aria-describedby="basic-addon1">
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+          <p ng-if="!$ctrl.clients || $ctrl.clients.length == 0">
+          No clients to show. Refresh to see list.
+          </p>
+
+          <table class="table table-bordered" ng-show="$ctrl.clients && $ctrl.clients.length > 0">
+            <thead>
+              <th>
+                Hostname
+              </th>
+              <th>
+                <span class="hidden-md hidden-lg">IP</span>
+                <span class="hidden-xs hidden-sm">IP Address</span>
+              </th>
+              <th>
+                <span class="hidden-md hidden-lg">MAC</span>
+                <span class="hidden-xs hidden-sm">MAC Address</span>
+              </th>
+              <th>Status</th>
+              <th>
+                <span class="hidden-md hidden-lg">Time</span>
+                <span class="hidden-xs hidden-sm">Remaining Time</span>
+              </th>
+              <th>Max Download</th>
+              <th>Max Upload</th>
+              <th>Token</th>
+              <th>
+                Action
+              </th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="c in $ctrl.clients | filter:$ctrl.searchText | orderBy:$ctrl.sortAttr">
+                <td>{{c.hostname}}</td>
+                <td>{{c.ip_address || 'unreachable'}}</td>
+                <td>{{c.mac_address}}</td>
+                <td>{{c.remaining_time > 0 ? (c.status === 'connected' ? (c.ip_address? 'connected' : 'disconnected') : 'paused' ): 'disconnected'}}</td>
+                <td>{{c.remaining_time | datetimeToNow:'short'}}</td>
+                <td>{{c.bandwidth_down}}kbps</td>
+                <td>{{c.bandwidth_up}}kbps</td>
+                <!--<td>-->
+                <!--  <span ng-style="{color: c.cookie_auth? 'inherit' : 'gray'}">-->
+                <!--  {{c.cookie_auth? "ON" : "OFF"}}-->
+                <!--  </span>-->
+                <!--</td>-->
+                <td>
+                  <span ng-style="{color: c.cookie_auth? 'inherit' : 'gray'}">
+                    {{c.token}}
+                  </span>
+                </td>
+                <td>
+                  <button edit-customer-time ng-model="c" class="btn btn-primary btn-xs">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    Edit
+                  </button>
+                  <button ng-click="$ctrl.blockUser(c.mac_address)" class="btn btn-danger btn-xs">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    Block
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <div uib-tab index="1" heading="Blocked Users">
+
+      <div class="padd-top">
+
+        <div
+          ba-panel
+          ba-panel-title="Blocked Users (MAC Filter)"
+          ba-panel-class="with-scroll">
+
+          <table class="table table-striped">
+            <thead>
+              <th>MAC Address</th>
+              <th>Options</th>
+            </thead>
+            <tbody>
+              <tr ng-show="$ctrl.blockListed.length === 0">
+                <td colspan="2">No blocked user yet.</td>
+              </tr>
+              <tr ng-repeat="mac in $ctrl.blockListed">
+                <td>{{mac}}</td>
+                <td>
+                  <button ng-click="$ctrl.unblockUser(mac)" class="btn btn-warning btn-xs">
+                    Unblock
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
