@@ -1,6 +1,6 @@
 {
   "name": "@adopisowifi/ng-wifi-users",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Angular.js 1.x module for managing AdoPisoWiFi wifi users",
   "main": "./dist/ado-ng-wifi-users.js",
   "scripts": {

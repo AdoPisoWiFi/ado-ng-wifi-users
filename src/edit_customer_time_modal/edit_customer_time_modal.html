@@ -106,7 +106,7 @@
   </div>
   <div class="modal-footer">
     <button type="submit" ng-click="submit(totalTime())" class="btn btn-success" ng-disabled="addTimeForm.$invalid || addTimeForm.$pristine">Update</button>
-    <a class="btn btn-warning" ng-click="reset()" ng-disabled="client.remaining_time === 0">Reset Time</a>
+    <a class="btn btn-warning" ng-click="reset()" ng-disabled="client.remaining_time === 0">Clear Time</a>
     <button type="button" class="btn btn-success" ng-disabled="!(client.status == 'disconnected' && client.remaining_time > 0)" ng-click="reconnect()">Reconnect</button>
     <a class="btn btn-default" ng-click="$dismiss()">Cancel</a>
 
