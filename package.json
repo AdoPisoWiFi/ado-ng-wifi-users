@@ -25,5 +25,8 @@
     "gulp": "^4.0.0",
     "gulp-angular-templatecache": "^2.2.5",
     "gulp-concat": "^2.6.1"
+  },
+  "dependencies": {
+    "@adopisowifi/ng-macaddress-filter": "^1.0.0"
   }
 }
