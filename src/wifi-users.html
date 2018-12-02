@@ -80,7 +80,7 @@
               <tr ng-repeat="c in $ctrl.clients | filter:$ctrl.searchText | orderBy:$ctrl.sortAttr">
                 <td>{{c.hostname}}</td>
                 <td>{{c.ip_address || 'unreachable'}}</td>
-                <td>{{c.mac_address}}</td>
+                <td>{{c.mac_address | macaddress}}</td>
                 <td>{{c.remaining_time > 0 ? (c.status === 'connected' ? (c.ip_address? 'connected' : 'disconnected') : 'paused' ): 'disconnected'}}</td>
                 <td>{{c.remaining_time | datetimeToNow:'short'}}</td>
                 <td>{{c.bandwidth_down}}kbps</td>

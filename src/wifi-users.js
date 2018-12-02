@@ -2,6 +2,7 @@
 'use strict';
 
   var App = angular.module('ado.wifi-users', [
+    'ado.macaddress-filter',
     'ado-ng-wifi-users.tpls'
   ]);
 

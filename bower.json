@@ -19,6 +19,7 @@
     "tests"
   ],
   "dependencies": {
-    "ado-save-config-btn": "^1.0.3"
+    "ado-save-config-btn": "^1.0.3",
+    "ado-ng-macaddress-filter": "^0.1.0"
   }
 }
