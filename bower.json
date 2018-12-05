@@ -20,6 +20,6 @@
   ],
   "dependencies": {
     "ado-save-config-btn": "^1.0.3",
-    "ado-ng-macaddress-filter": "^1.0.0"
+    "ado-ng-macaddress-filter": "^1.0.1"
   }
 }
