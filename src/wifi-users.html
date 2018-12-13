@@ -81,15 +81,10 @@
                 <td>{{c.hostname}}</td>
                 <td>{{c.ip_address || 'unreachable'}}</td>
                 <td class="no-word-break" style="word-break: keep-all;">{{c.mac_address | macaddress}}</td>
-                <td>{{c.remaining_time > 0 ? (c.status === 'connected' ? (c.ip_address? 'connected' : 'disconnected') : 'paused' ): 'disconnected'}}</td>
+                <td ng-class="{'text-success': c.is_time_running}">{{c.remaining_time > 0 ? (c.status === 'connected' ? (c.ip_address? 'connected' : 'disconnected') : 'paused' ): 'disconnected'}}</td>
                 <td>{{c.remaining_time | datetimeToNow:'short'}}</td>
                 <td>{{c.bandwidth_down}}kbps</td>
                 <td>{{c.bandwidth_up}}kbps</td>
-                <!--<td>-->
-                <!--  <span ng-style="{color: c.cookie_auth? 'inherit' : 'gray'}">-->
-                <!--  {{c.cookie_auth? "ON" : "OFF"}}-->
-                <!--  </span>-->
-                <!--</td>-->
                 <td>
                   <span ng-style="{color: c.cookie_auth? 'inherit' : 'gray'}">
                     {{c.token}}
