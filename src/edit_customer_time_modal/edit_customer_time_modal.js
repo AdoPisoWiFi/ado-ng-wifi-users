@@ -54,6 +54,7 @@
       $scope.cookie_transferrable = $scope.client.cookie_transferrable;
       $scope.cookie_sharable = $scope.client.cookie_sharable;
       $scope.allow_pause = $scope.client.allow_pause;
+      $scope.auto_continue_time = $scope.client.auto_continue_time;
 
       $scope.totalTime = function () {
         // convert to seconds
@@ -99,7 +100,8 @@
           cookie_auth: $scope.cookie_auth,
           cookie_transferrable: $scope.cookie_transferrable,
           cookie_sharable: $scope.cookie_sharable,
-          allow_pause: $scope.allow_pause
+          allow_pause: $scope.allow_pause,
+          auto_continue_time: $scope.auto_continue_time
         };
         adoWifiUsersService.updateClient(data)
           .then(function (res) {
